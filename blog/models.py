@@ -8,8 +8,8 @@ class Post(models.Model):
         ('published', 'Opublikowany'),
     )
     title = models.CharField(max_length=250)
-    slug = models.SlugField(max_lenght=250, unique_for_date='publish')
-    author = models.ForeignKey(User, related_name='blog_posts')
+    slug = models.SlugField(max_length=250, unique_for_date='publish')
+    author = models.ForeignKey(User, related_name='blog_posts', on_delete=models.CASCADE)
     body = models.TextField()
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
@@ -21,4 +21,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-        
